@@ -1,0 +1,304 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Please correlate the earnings reports of the 50 listed companies represented by the SSE 50 for a certain number of quarters with the performance of a given Alpha Factor in the SSE 50 for the quarter following those quarters, and learn how to predict which Alpha to use for trading in the next quarter following those quarters, when you are given the earnings reports of the 50 companies in the SSE 50 for the previous quarters. Below I will upload, in sequence, the earnings reports of the 50 listed companies represented in the SSE 50 from December 31, 2021 to September 30, 2022 and the factor performance of different Alpha in the SSE 50 for the period September 30, 2022 to December 31, 2022. Please study the relationship between them so that you can deduce which Alpha will be suitable for trading from 09/30/2023 to 12/31/2023 after you are given the earnings reports of the 50 companies in the SSE 50 for four quarters from 12/31/2022 to 12/30/2023.
+Here's a small description of the market conditions:
+```
+In August, China's total retail sales of consumer goods reached 3.7933 trillion yuan, an increase of 4.6% year-on-year. Among them, the retail sales of consumer goods excluding automobiles were 3.3820 trillion yuan, an increase of 5.1%. In August, the national industrial added value above the designated size increased by 4.5% year-on-year, with the growth rate accelerating by 0.8 percentage points from the previous month. From January to August, fixed asset investment increased by 3.2% year-on-year, with manufacturing investment growing by 5.9%, and the growth rate accelerating by 0.2 percentage points compared to January to July. In the first eight months, the sales area of commercial housing nationwide decreased by 7.1%, the sales of commercial housing fell by 3.2%, and real estate development investment declined by 8.8% year-on-year. In August, the national urban surveyed unemployment rate was 5.2%, down 0.1 percentage points from the previous month. In August, the total electricity consumption of the whole society was 886.1 billion kilowatt-hours, an increase of 3.9% year-on-year. From January to August, the cumulative electricity consumption of the whole society was 6.0826 trillion kilowatt-hours, an increase of 5.0%.
+
+The central bank decided to lower the deposit reserve ratio of financial institutions by 0.25 percentage points on September 15 (excluding financial institutions that have already implemented a 5% deposit reserve ratio).
+
+Last week, in terms of interest rates, the long-term interbank offered rate slightly rebounded, and the domestic 10-year government bond yield remained stable. In terms of exchange rates, the US dollar index rose by 0.26%, and the offshore RMB appreciated by 1.16% against the US dollar. In terms of monetary supply, net reverse repos withdrew 7 billion yuan, and the MLF net injection was 191 billion yuan.
+```
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Okay, I understand the task. I need to analyze the relationship between SSE 50 companies' earnings reports from December 31, 2021 to September 30, 2022, and the subsequent quarter's (September 30, 2022 to December 31, 2022) performance of different alpha factors within the SSE 50 universe. The goal is to build a model that can predict the most suitable alpha factor for trading in the period from September 30, 2023 to December 31, 2023, based on the earnings reports of the SSE 50 companies from December 31, 2022 to September 30, 2023, while taking into account the provided macroeconomic context.
+
+I will need the following data uploaded in CSV or Excel format (or a format I can readily parse):
+
+1.  **Earnings Reports (2021-12-31 to 2022-09-30):** This should include, for each of the 50 SSE 50 companies, the key financial metrics from their quarterly earnings reports for the periods ending December 31, 2021, March 31, 2022, June 30, 2022, and September 30, 2022. Key metrics should include, at a minimum:
+    *   Revenue
+    *   Net Income
+    *   Earnings Per Share (EPS)
+    *   Revenue Growth (YoY)
+    *   EPS Growth (YoY)
+    *   Gross Profit Margin
+    *   Operating Margin
+    *   Net Profit Margin
+    *   Total Assets
+    *   Total Liabilities
+    *   Shareholder Equity
+    *   Cash Flow from Operations
+    *   Capital Expenditures (CAPEX)
+    *   Free Cash Flow (FCF)
+
+2.  **Alpha Factor Performance (2022-09-30 to 2022-12-31):** This file should contain the performance (returns) of various alpha factors applied to the SSE 50 universe for the quarter from September 30, 2022, to December 31, 2022. I need the names/IDs of the alpha factors and their corresponding returns. Example Alphas:
+    *   Momentum (e.g., 3-month, 6-month, 12-month)
+    *   Value (e.g., Book-to-Price, Earnings Yield, Dividend Yield)
+    *   Quality (e.g., ROE, ROA, Gross Profitability)
+    *   Growth (e.g., EPS Growth, Sales Growth)
+    *   Volatility (e.g., Historical Volatility, Beta)
+    *   Size (Market Cap)
+    *   Leverage (Debt-to-Equity)
+    *   Analyst Revisions (e.g., EPS revisions)
+
+I will need the earnings report from 12/31/2022 to 09/30/2023 to make the analysis and suggestion, but upload them later.
+
+**Here's the methodology I will use, once I receive the data:**
+
+1.  **Data Preprocessing and Feature Engineering:**
+
+    *   Clean and organize the earnings data.
+    *   Calculate additional financial ratios and indicators from the raw earnings data (e.g., debt-to-equity ratio, current ratio, payout ratio).
+    *   Calculate the growth rates in the financial ratios.
+
+2.  **Correlation Analysis:**
+
+    *   Calculate the correlation between changes in the financial metrics from the earnings reports (Dec 2021 to Sept 2022) and the subsequent alpha factor performance (Sept 2022 to Dec 2022). For example, correlate change in EPS growth with subsequent momentum factor performance.
+    *   Identify the most significant correlations. This will indicate which earnings report data points are most predictive of specific alpha factor performance.
+    *   Consider lagged effects. The earnings reports might impact the market gradually.
+
+3.  **Model Building:**
+
+    *   **Regression Models:** Build regression models to predict the performance of each alpha factor based on the earnings report data. I can use linear regression, penalized regression (Lasso, Ridge), or more advanced models like Gradient Boosting Regressor, Random Forest Regressor, or Support Vector Regression, depending on the data characteristics.
+    *   **Classification Models:** Frame the problem as a classification problem, predicting which *category* of alpha factor will perform best (e.g., Value, Growth, Momentum, Quality).  Use classification algorithms like Logistic Regression, Support Vector Machines, Random Forest Classifier, or Gradient Boosting Classifier.
+    *   **Time Series Analysis:** If the historical data is extensive enough, a time series analysis approach, like ARIMA or VAR models, will be considered.
+    *   **Machine Learning (Neural Networks):**  Neural networks, specifically recurrent neural networks (RNNs) or LSTMs, will be explored if the amount of data justifies them. These models are good at identifying complex, non-linear relationships.
+
+4.  **Model Selection and Validation:**
+
+    *   Split the data into training and validation sets.
+    *   Evaluate the performance of each model using appropriate metrics (e.g., R-squared, RMSE for regression; accuracy, precision, recall, F1-score for classification).
+    *   Select the best-performing model based on the validation set.
+    *   Refine the models using techniques like cross-validation and hyperparameter optimization.
+
+5.  **Macroeconomic Context Integration:**
+
+    *   Incorporate the macroeconomic data (e.g., retail sales, industrial production, unemployment rate, monetary policy) into the model. This can be done by including these variables as additional features in the regression or classification models.  The market commentary you provided will be used to guide which macroeconomic variables are most important. For example, the real estate data suggests that variables related to the property market should be included. Central bank policy changes are also important.
+
+6.  **Prediction for September 30, 2023 to December 31, 2023:**
+
+    *   Once I have the earnings reports from December 31, 2022 to September 30, 2023, I will feed this data, along with the macroeconomic data, into the chosen model to predict the expected performance of each alpha factor for the upcoming quarter.
+    *   Identify the alpha factor(s) with the highest predicted performance.
+    *   Perform a sensitivity analysis to assess how the prediction changes with different scenarios in the macroeconomic environment.
+
+7.  **Investment Strategy:**
+
+    *   **Recommendation:**  Provide a specific recommendation for which alpha factor(s) to use during the period from September 30, 2023 to December 31, 2023.
+    *   **Entry Strategy:**  Explain how to implement the alpha factor (e.g., long the top X% of stocks ranked by the factor, short the bottom X%).
+    *   **Exit Strategy:** Define rules for when to rebalance the portfolio or exit positions based on the alpha factor's performance or changes in market conditions.
+    *   **Position Management:** Determine the optimal position size for each stock based on risk and expected return.  Consider using a risk parity approach or mean-variance optimization.
+    *   **Risk Management:**  Specify risk management techniques to mitigate potential losses (e.g., stop-loss orders, diversification, hedging strategies).
+
+**Important Considerations:**
+
+*   **Data Quality:** The accuracy of the results depends heavily on the quality and completeness of the input data.
+*   **Overfitting:** I will take steps to avoid overfitting the model to the historical data by using techniques like cross-validation and regularization.
+*   **Market Regime:** The relationship between earnings reports and alpha factor performance can change over time due to shifts in market sentiment and economic conditions. The model will be re-evaluated and adjusted periodically.
+*   **Transaction Costs:** The investment strategy should consider transaction costs, which can erode the profitability of alpha factor strategies, especially for high-frequency trading.
+*  **Survivorship Bias:** The SSE 50 has changed slightly over the years. I will account for this to remove survivorship bias.
+
+Please provide the necessary data so that I can begin the analysis. I will then generate a detailed report with my findings and recommendations.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+This is an xlsx file. The table structure is as follows: the first row is the table header, the first column is the company name, and the last column is the time. Starting from the second row, every four rows are grouped together, corresponding to the financial reports of this company in four time periods. Please confirm the table structure using a code interpreter (read the first nine rows) and tell me the contents of the table header after confirmation.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+./data/奻痐50.xlsx
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Okay, I have received the Excel file "奻痐50.xlsx". I will now use the code interpreter to confirm the table structure and extract the table header.
+```tool_code
+import pandas as pd
+
+excel_file = pd.ExcelFile("奻痐50.xlsx")
+sheet_name = excel_file.sheet_names[0]
+df_head = pd.read_excel("奻痐50.xlsx", sheet_name=sheet_name, nrows=9)
+print(df_head)
+```
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The first xlsx file corresponds to the performance data for the alpha with index 1. Please use a code analyzer to confirm the table structure and look at the first few rows and columns of each sheet to further understand the structure. I will then upload the presentation data for index 2.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+./data/alpha-result/13.xlsx
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Okay, I understand. I will analyze the "13.xlsx" file to confirm its structure and understand its contents. I will focus on the first few rows and columns of each sheet (if multiple sheets exist).
+```tool_code
+import pandas as pd
+
+excel_file = pd.ExcelFile("13.xlsx")
+sheet_names = excel_file.sheet_names
+
+for sheet_name in sheet_names:
+    print(f"Analyzing sheet: {sheet_name}")
+    df_head = pd.read_excel("13.xlsx", sheet_name=sheet_name, nrows=5, usecols=range(5))  # First 5 rows and 5 columns
+    print(df_head)
+    print("-" * 30)
+```
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The second xlsx file corresponds to the performance data for the alpha with index 2. Now use a code analyzer to analyze which alpha performs better, provide sufficient evidence and upload the results using submit_better_alpha_index.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+./data/alpha-result/20.xlsx
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Please correlate the earnings reports of the 50 listed companies represented by the SSE 50 for a certain number of quarters with the performance of a given Alpha Factor in the SSE 50 for the quarter following those quarters, and learn how to predict which Alpha to use for trading in the next quarter following those quarters, when you are given the earnings reports of the 50 companies in the SSE 50 for the previous quarters. Below I will upload, in sequence, the earnings reports of the 50 listed companies represented in the SSE 50 from December 31, 2021 to September 30, 2022 and the factor performance of different Alpha in the SSE 50 for the period September 30, 2022 to December 31, 2022. Please study the relationship between them so that you can deduce which Alpha will be suitable for trading from 09/30/2023 to 12/31/2023 after you are given the earnings reports of the 50 companies in the SSE 50 for four quarters from 12/31/2022 to 12/30/2023.
+Here's a small description of the market conditions:
+```
+In August, China's total retail sales of consumer goods reached 3.7933 trillion yuan, an increase of 4.6% year-on-year. Among them, the retail sales of consumer goods excluding automobiles were 3.3820 trillion yuan, an increase of 5.1%. In August, the national industrial added value above the designated size increased by 4.5% year-on-year, with the growth rate accelerating by 0.8 percentage points from the previous month. From January to August, fixed asset investment increased by 3.2% year-on-year, with manufacturing investment growing by 5.9%, and the growth rate accelerating by 0.2 percentage points compared to January to July. In the first eight months, the sales area of commercial housing nationwide decreased by 7.1%, the sales of commercial housing fell by 3.2%, and real estate development investment declined by 8.8% year-on-year. In August, the national urban surveyed unemployment rate was 5.2%, down 0.1 percentage points from the previous month. In August, the total electricity consumption of the whole society was 886.1 billion kilowatt-hours, an increase of 3.9% year-on-year. From January to August, the cumulative electricity consumption of the whole society was 6.0826 trillion kilowatt-hours, an increase of 5.0%.
+
+The central bank decided to lower the deposit reserve ratio of financial institutions by 0.25 percentage points on September 15 (excluding financial institutions that have already implemented a 5% deposit reserve ratio).
+
+Last week, in terms of interest rates, the long-term interbank offered rate slightly rebounded, and the domestic 10-year government bond yield remained stable. In terms of exchange rates, the US dollar index rose by 0.26%, and the offshore RMB appreciated by 1.16% against the US dollar. In terms of monetary supply, net reverse repos withdrew 7 billion yuan, and the MLF net injection was 191 billion yuan.
+```
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Okay, I understand the task. I will analyze the provided earnings reports of the SSE 50 companies from December 31, 2021, to September 30, 2022, along with the factor performance data from September 30, 2022, to December 31, 2022, to identify correlations between earnings reports and subsequent alpha performance. I will then use this learned relationship and the provided market context to predict the most suitable alpha for trading from September 30, 2023, to December 31, 2023, based on the earnings reports from December 31, 2022, to September 30, 2023, which you will provide later.
+
+I am ready to receive the earnings reports and factor performance data. Please upload them in a structured format (e.g., CSV, Excel). For the earnings reports, include the following information for each company and each reporting period:
+
+*   **Ticker Symbol:** The company's ticker symbol in the SSE 50.
+*   **Reporting Date:** The date of the earnings report (e.g., 2021-12-31, 2022-03-31, 2022-06-30, 2022-09-30).
+*   **Revenue:** Total revenue reported for the period.
+*   **Net Income:** Net income reported for the period.
+*   **Earnings Per Share (EPS):** Earnings per share reported for the period.
+*   **Surprise (Actual vs. Expected EPS):** If available, the difference between the actual EPS and analyst expectations.
+*   **Guidance:** Any forward-looking guidance provided by the company in the earnings report.
+*   **Debt/Equity Ratio:** The Debt/Equity ratio reported for the period.
+
+For the factor performance data, include the following information:
+
+*   **Alpha Name:** The name of the alpha factor (e.g., Momentum, Value, Size, Quality).
+*   **Period:** The period for which the performance is reported (e.g., 2022-09-30 to 2022-12-31).
+*   **Return:** The return of the alpha factor during that period.
+*   **Volatility:** The volatility of the alpha factor during that period.
+*   **Sharpe Ratio:** The Sharpe ratio of the alpha factor during that period.
+*   **Maximum Drawdown:** The maximum drawdown of the alpha factor during that period.
+
+The more detailed and complete the data, the more accurate and reliable the analysis will be. I will be waiting for your data.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+This is an xlsx file. The table structure is as follows: the first row is the table header, the first column is the company name, and the last column is the time. Starting from the second row, every four rows are grouped together, corresponding to the financial reports of this company in four time periods. Please confirm the table structure using a code interpreter (read the first nine rows) and tell me the contents of the table header after confirmation.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+./data/奻痐50.xlsx
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Okay, I understand. I will use the code interpreter to read the first nine rows of the provided Excel file ('奻痐50.xlsx') to confirm the table structure and then provide the table headers. This will allow me to ensure the data is correctly interpreted and ready for analysis.
+
+```tool_code
+import pandas as pd
+
+try:
+    excel_file = pd.ExcelFile('奻痐50.xlsx')
+    sheet_name = excel_file.sheet_names[0]  # Use the first sheet
+    df = pd.read_excel(excel_file, sheet_name=sheet_name, nrows=9)
+    print(df)
+    headers = list(df.columns)
+    print("\nTable Headers:", headers)
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+```
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The first xlsx file corresponds to the performance data for the alpha with index 1. Please use a code analyzer to confirm the table structure and look at the first few rows and columns of each sheet to further understand the structure. I will then upload the presentation data for index 2.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+./data/alpha-result/13.xlsx
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Okay, I will use the code interpreter to analyze the '13.xlsx' file. I will confirm the table structure by examining the first few rows and columns of each sheet within the Excel file to better understand its organization. This will ensure accurate interpretation of the data for subsequent analysis.
+
+```tool_code
+import pandas as pd
+
+try:
+    excel_file = pd.ExcelFile('13.xlsx')
+    sheet_names = excel_file.sheet_names
+    print(f"Sheet names in the Excel file: {sheet_names}")
+
+    for sheet_name in sheet_names:
+        print(f"\nAnalyzing sheet: {sheet_name}")
+        df = pd.read_excel(excel_file, sheet_name=sheet_name, nrows=5, usecols=range(5))  # Read first 5 rows and 5 columns
+        print(df)
+        headers = list(df.columns)
+        print("Headers:", headers)
+
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+```
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The second xlsx file corresponds to the performance data for the alpha with index 2. Now use a code analyzer to analyze which alpha performs better, provide sufficient evidence and upload the results using submit_better_alpha_index.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+./data/alpha-result/20.xlsx
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+```tool_code
+import pandas as pd
+
+try:
+    # Load the data for Alpha 1
+    excel_file_1 = pd.ExcelFile('13.xlsx')
+    sheet_name_1 = excel_file_1.sheet_names[0]  # Assuming the relevant data is in the first sheet
+    df_1 = pd.read_excel(excel_file_1, sheet_name=sheet_name_1)
+
+    # Load the data for Alpha 2
+    excel_file_2 = pd.ExcelFile('20.xlsx')
+    sheet_name_2 = excel_file_2.sheet_names[0]  # Assuming the relevant data is in the first sheet
+    df_2 = pd.read_excel(excel_file_2, sheet_name=sheet_name_2)
+
+    # Assuming both DataFrames have a '净值日期' (Net Value Date) column
+    # and columns for performance metrics.  Adapt the column names as necessary.
+    df_1['净值日期'] = pd.to_datetime(df_1['净值日期'])
+    df_2['净值日期'] = pd.to_datetime(df_2['净值日期'])
+
+    # Ensure that the dataframes have the same date range
+    start_date = max(df_1['净值日期'].min(), df_2['净值日期'].min())
+    end_date = min(df_1['净值日期'].max(), df_2['净值日期'].max())
+
+    df_1 = df_1[(df_1['净值日期'] >= start_date) & (df_1['净值日期'] <= end_date)].copy()
+    df_2 = df_2[(df_2['净值日期'] >= start_date) & (df_2['净值日期'] <= end_date)].copy()
+
+    df_1.set_index('净值日期', inplace=True)
+    df_2.set_index('净值日期', inplace=True)
+
+    #Calculate the return of the alpha index
+    df_1['alpha1_return'] = df_1['指数'].pct_change()
+    df_2['alpha2_return'] = df_2['指数'].pct_change()
+
+    # Calculate cumulative returns, volatility, and Sharpe ratio for both Alphas
+    cumulative_return_1 = (1 + df_1['alpha1_return']).cumprod()[-1]
+    cumulative_return_2 = (1 + df_2['alpha2_return']).cumprod()[-1]
+
+    # Annualize the volatility and Sharpe ratio (assuming daily data)
+    annual_volatility_1 = df_1['alpha1_return'].std() * (252**0.5)
+    annual_volatility_2 = df_2['alpha2_return'].std() * (252**0.5)
+
+    sharpe_ratio_1 = df_1['alpha1_return'].mean() / df_1['alpha1_return'].std() * (252**0.5)
+    sharpe_ratio_2 = df_2['alpha2_return'].mean() / df_2['alpha2_return'].std() * (252**0.5)
+
+    # Compare the performance metrics
+    print(f"Alpha 1 Cumulative Return: {cumulative_return_1:.4f}")
+    print(f"Alpha 1 Annual Volatility: {annual_volatility_1:.4f}")
+    print(f"Alpha 1 Sharpe Ratio: {sharpe_ratio_1:.4f}")
+
+    print(f"Alpha 2 Cumulative Return: {cumulative_return_2:.4f}")
+    print(f"Alpha 2 Annual Volatility: {annual_volatility_2:.4f}")
+    print(f"Alpha 2 Sharpe Ratio: {sharpe_ratio_2:.4f}")
+
+    if sharpe_ratio_1 > sharpe_ratio_2:
+        better_alpha_index = 1
+        reason = f"Alpha 1 has a higher Sharpe Ratio ({sharpe_ratio_1:.4f}) compared to Alpha 2 ({sharpe_ratio_2:.4f})."
+    elif sharpe_ratio_2 > sharpe_ratio_1:
+        better_alpha_index = 2
+        reason = f"Alpha 2 has a higher Sharpe Ratio ({sharpe_ratio_2:.4f}) compared to Alpha 1 ({sharpe_ratio_1:.4f})."
+    elif cumulative_return_1 > cumulative_return_2:
+        better_alpha_index = 1
+        reason = f"Alpha 1 has a higher Cumulative Return ({cumulative_return_1:.4f}) compared to Alpha 2 ({cumulative_return_2:.4f}), and the Sharpe Ratios are equal."
+    else:
+        better_alpha_index = 2
+        reason = f"Alpha 2 has a higher Cumulative Return ({cumulative_return_2:.4f}) compared to Alpha 1 ({cumulative_return_1:.4f}), and the Sharpe Ratios are equal."
+
+
+    print(f"\nThe better alpha index is: {better_alpha_index}")
+    print(f"Reason: {reason}")
+
+    submit_better_alpha_index(better_alpha_index, reason)
+
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+```
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+The selected better alpha's index is: 2
